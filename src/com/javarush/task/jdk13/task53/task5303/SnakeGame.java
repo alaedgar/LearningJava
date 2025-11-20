@@ -5,12 +5,13 @@ import com.javarush.engine.cell.*;
 public class SnakeGame extends Game {
     public static final int WIDTH = 15;
     public static final int HEIGHT = 15;
-    public static final int GOAL = 28;
 
+    private static final int GOAL = 28;
     private Snake snake;
     private int turnDelay;
     private Apple apple;
     private boolean isGameStopped;
+    private int score;
 
     @Override
     public void initialize() {
@@ -19,6 +20,8 @@ public class SnakeGame extends Game {
     }
 
     private void createGame() {
+        score = 0;
+        setScore(score);
         turnDelay = 300;
         setTurnTimer(turnDelay);
         isGameStopped = false;
@@ -41,10 +44,18 @@ public class SnakeGame extends Game {
     public void onTurn(int step) {
         snake.move(apple);
         if (!apple.isAlive) {
+            score += 5;
+            setScore(score);
+            turnDelay -= 10;
+            setTurnTimer(turnDelay);
             createNewApple();
         }
         if (!snake.isAlive) {
             gameOver();
+        }
+
+        if (snake.getLength() > GOAL) {
+            win();
         }
         drawScene();
     }
@@ -60,15 +71,29 @@ public class SnakeGame extends Game {
         } else if (key == Key.DOWN) {
             snake.setDirection(Direction.DOWN);
         }
+        if (isGameStopped && key == Key.SPACE) {
+            createGame();
+        }
     }
 
     private void createNewApple() {
-        apple = new Apple(getRandomNumber(WIDTH), getRandomNumber(HEIGHT));
+        while (true) {
+            apple = new Apple(getRandomNumber(WIDTH), getRandomNumber(HEIGHT));
+            if (!snake.checkCollision(apple)) {
+                break;
+            }
+        }
     }
 
     private void gameOver() {
         stopTurnTimer();
         isGameStopped = true;
         showMessageDialog(Color.RED, "Game Over :(", Color.BLACK, 75);
+    }
+
+    private void win() {
+        stopTurnTimer();
+        isGameStopped = true;
+        showMessageDialog(Color.GREEN, "You Win :)", Color.BLACK, 75);
     }
 }

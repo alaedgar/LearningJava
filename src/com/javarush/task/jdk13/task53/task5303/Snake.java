@@ -15,13 +15,20 @@ public class Snake {
     private Direction direction = Direction.LEFT;
 
     public void setDirection(Direction direction) {
-        if (direction == Direction.UP && this.direction == Direction.DOWN) {
+        if ((this.direction == Direction.LEFT || this.direction == Direction.RIGHT) && snakeParts.get(0).x == snakeParts.get(1).x) {
             return;
-        } else if (direction == Direction.LEFT && this.direction == Direction.RIGHT) {
+        }
+        if ((this.direction == Direction.UP || this.direction == Direction.DOWN) && snakeParts.get(0).y == snakeParts.get(1).y) {
+            return;
+        }
+
+        if (direction == Direction.LEFT && this.direction == Direction.RIGHT) {
             return;
         } else if (direction == Direction.RIGHT && this.direction == Direction.LEFT) {
             return;
         } else if (direction == Direction.DOWN && this.direction == Direction.UP) {
+            return;
+        } else if (direction == Direction.UP && this.direction == Direction.DOWN) {
             return;
         }
         this.direction = direction;
@@ -89,5 +96,9 @@ public class Snake {
             }
         }
         return false;
+    }
+
+    public int getLength() {
+        return snakeParts.size();
     }
 }
