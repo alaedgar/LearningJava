@@ -1,6 +1,8 @@
 package com.javarush.task.pro.task15.task1532;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 /*

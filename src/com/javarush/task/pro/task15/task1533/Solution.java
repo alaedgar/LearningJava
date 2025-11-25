@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 /* 
 Замена потока
@@ -16,12 +17,13 @@ public class Solution {
     }
 
     public static ByteArrayOutputStream writeData(String name, String email, int level, int rating) throws IOException {
+
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-            stream.write(("Имя: " + name + "\n").getBytes(StandardCharsets.UTF_8));
-            stream.write(("Почта: " + email + "\n").getBytes(StandardCharsets.UTF_8));
-            stream.write(("Уровень: " + level + "\n").getBytes(StandardCharsets.UTF_8));
-            stream.write(("Рейтинг: " + rating + "\n").getBytes(StandardCharsets.UTF_8));
+        stream.write(("Имя: " + name + "\n").getBytes(StandardCharsets.UTF_8));
+        stream.write(("Почта: " + email + "\n").getBytes(StandardCharsets.UTF_8));
+        stream.write(("Уровень: " + level + "\n").getBytes(StandardCharsets.UTF_8));
+        stream.write(("Рейтинг: " + rating + "\n").getBytes(StandardCharsets.UTF_8));
 
         return stream;
     }
