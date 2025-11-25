@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 /* 
@@ -14,6 +15,10 @@ public class Solution {
 
     public static void main(String[] args) throws IOException {
         writeData("Justinian", "Justinian@mega.city.one", 41, 391);
+
+        String str = "c:\\windows\\projects\\note.txt";
+        Path path = Path.of(str).getRoot();
+        System.out.println(path.toString());
     }
 
     public static ByteArrayOutputStream writeData(String name, String email, int level, int rating) throws IOException {
