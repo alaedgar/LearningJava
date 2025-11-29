@@ -27,3 +27,4 @@ public class Solution {
         return Instant.ofEpochSecond(Instant.MAX.getEpochSecond(), 999999999);
     }
 }
+

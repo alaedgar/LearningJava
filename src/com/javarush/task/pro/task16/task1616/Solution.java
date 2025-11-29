@@ -2,6 +2,7 @@ package com.javarush.task.pro.task16.task1616;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Set;
 import java.util.TreeSet;
 
 /* 
@@ -20,14 +21,16 @@ public class Solution {
     }
 
     static TreeSet<String> getSortedZones() {
-        //напишите тут ваш код
+        TreeSet<String> sortedZones = new TreeSet<>();
+        for (String s: ZoneId.getAvailableZoneIds())
+            sortedZones.add(s);
 
-        return null;
+        return sortedZones;
     }
 
     static ZonedDateTime getBeijingDateTime() {
-        //напишите тут ваш код
-
-        return null;
+        ZoneId zone = ZoneId.of("Asia/Shanghai");
+        ZonedDateTime time = ZonedDateTime.now(zone);
+        return time;
     }
 }
